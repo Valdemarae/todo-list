@@ -1,3 +1,5 @@
+import { xClicked, addTodoClicked } from './index';
+
 const main = document.querySelector(".main");
 
 const displayForm = () => {
@@ -43,8 +45,8 @@ const displayForm = () => {
   form.appendChild(submitButton);
 
   main.appendChild(form);
-  submitButton.addEventListener("click", hideForm);
-  x.addEventListener("click", hideForm);
+  submitButton.addEventListener("click", addTodoClicked);
+  x.addEventListener("click", xClicked);
 };
 
 const hideForm = () => {
@@ -53,4 +55,4 @@ const hideForm = () => {
   main.setAttribute("style", "pointer-events: all;");
 };
 
-export { displayForm };
+export { displayForm, hideForm };
