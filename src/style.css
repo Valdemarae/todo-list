@@ -30,9 +30,14 @@ h1 {
 }
 
 .plus {
-  font-size: 170px;
+  font-size: 150px;
   margin-right: 10px;
   color: rgb(116, 215, 116);
+}
+
+.plus:hover {
+  cursor: pointer;
+  color: rgb(78, 144, 78);
 }
 
 .main {
@@ -60,4 +65,46 @@ h1 {
 
 a {
   margin: 0 10px;
+}
+
+.form {
+  background-color: rgb(110, 43, 43);
+  position: absolute;
+  left: 40%;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  width: 28vw;
+  border: 2px solid black;
+  border-radius: 30px;
+  padding: 3vh 6vw;
+  font-size: 28px;
+  pointer-events: all;
+}
+
+.form .x {
+  background-color: rgb(110, 43, 43);
+  color: red;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 4%;
+  right: 9%;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.form input, .form button {
+  background-color: rgb(78, 30, 30);
+  font-size: 24px;
+  margin: 5px 0 18px 0;
+}
+
+.form button {
+  padding: 10px 30px;
+  border-radius: 20px;
 }
