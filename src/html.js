@@ -58,6 +58,8 @@ const hideForm = () => {
 };
 
 const displayTodoList = (element) => {
+  const list = document.querySelector(".list");
+
   const div = document.createElement("div");
   div.classList.add("todo");
 
@@ -74,13 +76,14 @@ const displayTodoList = (element) => {
   div.appendChild(description);
   div.appendChild(dueDate);
 
-  content.appendChild(div);
+  list.appendChild(div);
 }
 
-const deleteTodoList = () => {
-  document.querySelectorAll(".todo").forEach(element => {
-    content.removeChild(element);
-  });
+const clearTodoList = () => {
+  content.removeChild(document.querySelector(".list"));
+  const list = document.createElement("div");
+  list.classList.add("list");
+  content.appendChild(list);
 }
 
-export { displayForm, hideForm, displayTodoList, deleteTodoList };
+export { displayForm, hideForm, displayTodoList, clearTodoList };

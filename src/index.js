@@ -1,6 +1,6 @@
 import Todo from "./todo_class";
 import './style.css';
-import { displayForm, hideForm, displayTodoList, deleteTodoList } from "./html";
+import { displayForm, hideForm, displayTodoList, clearTodoList } from "./html";
 
 export { xClicked, addTodoClicked };
 
@@ -22,7 +22,7 @@ const addTodoClicked = () => {
 
   const list = Todo.getList();
 
-  deleteTodoList();
+  clearTodoList();
 
   list.forEach(element => {
     displayTodoList(element);
