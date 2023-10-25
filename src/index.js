@@ -14,6 +14,12 @@ const xClicked = () => {
 }
 
 const addTodoClicked = () => {
+  const title = document.querySelector("#title");
+  const description = document.querySelector("#description");
+  const dueDate = document.querySelector("#due_date");
+
+  new Todo(title.value, description.value, dueDate.value);
+  
   hideForm();
 }
 

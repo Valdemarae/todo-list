@@ -16,6 +16,7 @@ const displayForm = () => {
   titleLabel.textContent = "Title";
   const titleInput = document.createElement("input");
   titleInput.type = "text";
+  titleInput.id = "title";
 
   const descriptionLabel = document.createElement("label");
   descriptionLabel.for = "due_date";
