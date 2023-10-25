@@ -14,4 +14,8 @@ export default class Todo {
     else
       todoList[project] = [this];
   }
+
+  static getList(project = "general") {
+    return todoList[project];
+  }
 }

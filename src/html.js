@@ -1,6 +1,7 @@
 import { xClicked, addTodoClicked } from './index';
 
 const main = document.querySelector(".main");
+const content = document.querySelector(".content");
 
 const displayForm = () => {
   const form = document.createElement("div");
@@ -56,4 +57,30 @@ const hideForm = () => {
   main.setAttribute("style", "pointer-events: all;");
 };
 
-export { displayForm, hideForm };
+const displayTodoList = (element) => {
+  const div = document.createElement("div");
+  div.classList.add("todo");
+
+  const title = document.createElement("h2");
+  title.textContent = element.title;
+
+  const description = document.createElement("p");
+  description.textContent = element.description;
+
+  const dueDate = document.createElement("p");
+  dueDate.textContent = element.dueDate;
+
+  div.appendChild(title);
+  div.appendChild(description);
+  div.appendChild(dueDate);
+
+  content.appendChild(div);
+}
+
+const deleteTodoList = () => {
+  document.querySelectorAll(".todo").forEach(element => {
+    content.removeChild(element);
+  });
+}
+
+export { displayForm, hideForm, displayTodoList, deleteTodoList };

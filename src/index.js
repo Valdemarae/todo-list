@@ -1,6 +1,6 @@
 import Todo from "./todo_class";
 import './style.css';
-import { displayForm, hideForm } from "./html";
+import { displayForm, hideForm, displayTodoList, deleteTodoList } from "./html";
 
 export { xClicked, addTodoClicked };
 
@@ -19,7 +19,15 @@ const addTodoClicked = () => {
   const dueDate = document.querySelector("#due_date");
 
   new Todo(title.value, description.value, dueDate.value);
-  
+
+  const list = Todo.getList();
+
+  deleteTodoList();
+
+  list.forEach(element => {
+    displayTodoList(element);
+  });
+
   hideForm();
 }
 
