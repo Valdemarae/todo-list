@@ -114,7 +114,6 @@ const displayTodoList = (element) => {
 
   completion.addEventListener("click", (e) => {
     Todo.toggleCompletion(element);
-    console.log(e.target.textContent)
     if (e.target.textContent == "Completed? ✘") {
       e.target.classList.add("completed");
       e.target.classList.remove("not_completed");

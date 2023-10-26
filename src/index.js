@@ -31,6 +31,22 @@ function highlightLastProject(){
   document.querySelector(".project_list").lastElementChild.classList.add("project_chosen");
 }
 
+function highlightProject(project){
+  let element;
+  for (const h2 of document.querySelectorAll("h2")) {
+    if (h2.textContent.includes(project)) {
+      element = h2;
+      break;
+    }
+  }
+
+  const previousChosen = document.querySelector(".project_chosen");
+  console.log(project)
+      if (previousChosen)
+        previousChosen.classList.remove("project_chosen");
+      element.classList.add("project_chosen");
+}
+
 const plus = document.querySelector(".plus");
 plus.addEventListener("click", () => {
   const projects = Todo.getProjects();
@@ -56,6 +72,8 @@ const addTodoClicked = () => {
     updateTodos(project);
   
     hideForm();
+
+    highlightProject(project);
   }
 }
 
@@ -78,6 +96,8 @@ const addProjectClicked = () => {
     Todo.addProject(project);
   
     updateProjects();
+
+    updateTodos(project);
   
     hideForm();
   }
@@ -97,7 +117,6 @@ function updateProjects() {
     if (list.includes(e.target.textContent)){
       updateTodos(e.target.textContent);
       const previousChosen = document.querySelector(".project_chosen");
-      console.log(previousChosen)
       if (previousChosen)
         previousChosen.classList.remove("project_chosen");
       e.target.classList.add("project_chosen");
