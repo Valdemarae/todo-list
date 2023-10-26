@@ -1,5 +1,16 @@
-let todoList = {};
-let projects = ["general"];
+import { getProjects, getTodoList, updateProjects, updateTodoList } from "./memory";
+
+let todoList, projects;
+
+if (getProjects())
+  projects = getProjects();
+else
+  projects = ["general"];
+
+if (getTodoList())
+  todoList = getTodoList();
+else
+  todoList = {};
 
 export default class Todo {
   constructor(title, description, dueDate, project) {
@@ -8,6 +19,7 @@ export default class Todo {
     this.dueDate = dueDate;
     this.completed = "✘";
     this.#addTodoToList(project);
+    updateTodoList(todoList);
   }
 
   #addTodoToList(project) {
@@ -27,6 +39,7 @@ export default class Todo {
 
   static addProject(project) {
     projects.push(project);
+    updateProjects(projects);
   }
 
   static toggleCompletion(todo) {
@@ -34,6 +47,7 @@ export default class Todo {
       todo.completed = "✔";
     else
       todo.completed = "✘";
+    updateTodoList(todoList);
   }
 
   static deleteTodo(todo, project) {
@@ -47,5 +61,6 @@ export default class Todo {
     });
     if (n != undefined)
       todoList[project] = array.slice(0, n).concat(array.slice(n+1));
+    updateTodoList(todoList);
   }
 }
