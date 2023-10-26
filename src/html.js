@@ -18,6 +18,7 @@ const displayForm = () => {
   const titleInput = document.createElement("input");
   titleInput.type = "text";
   titleInput.id = "title";
+  titleInput.placeholder = "must be present";
 
   const descriptionLabel = document.createElement("label");
   descriptionLabel.for = "due_date";
@@ -25,12 +26,14 @@ const displayForm = () => {
   const descriptionInput = document.createElement("input");
   descriptionInput.type = "description";
   descriptionInput.id = "description";
+  descriptionInput.placeholder = "optional";
 
   const dueDateLabel = document.createElement("label");
   dueDateLabel.for = "due_date";
   dueDateLabel.textContent = "Due Date";
   const dueDateInput = document.createElement("input");
-  dueDateInput.type = "text";
+  dueDateInput.type = "date";
+  dueDateInput.valueAsDate = new Date();
   dueDateInput.id = "due_date";
 
   const submitButton = document.createElement("button");

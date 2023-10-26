@@ -76,11 +76,12 @@ a {
   flex-direction: column;
   height: 30vh;
   min-width: max-content;
-  min-height: 400px;
+  height: max-content;
+  justify-content: center;
   width: 28vw;
   border: 2px solid black;
   border-radius: 30px;
-  padding: 3vh 6vw;
+  padding: 17px 6vw;
   font-size: 28px;
   pointer-events: all;
 }
