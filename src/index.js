@@ -1,31 +1,38 @@
 import Todo from "./todo_class";
-import './style.css';
-import { displayForm, hideForm, displayTodoList, clearTodoList, displayProjectForm, clearProjectList, displayProjectList } from "./html";
+import "./style.css";
+import {
+  displayForm,
+  hideForm,
+  displayTodoList,
+  clearTodoList,
+  displayProjectForm,
+  clearProjectList,
+  displayProjectList,
+} from "./html";
 
 export { xClicked, addTodoClicked, addProjectClicked, deleteTodo };
 
 initialLoad();
-function initialLoad(){
+function initialLoad() {
   const list = Todo.getList("general");
-  if (list){
-    list.forEach(element => {
+  if (list) {
+    list.forEach((element) => {
       displayTodoList(element);
     });
   }
 
   const projectList = Todo.getProjects();
-  if (projectList){
-    projectList.forEach(element => {
+  if (projectList) {
+    projectList.forEach((element) => {
       displayProjectList(element);
     });
   }
 
   document.querySelector(".project_list").addEventListener("click", (e) => {
-    if (projectList.includes(e.target.textContent)){
+    if (projectList.includes(e.target.textContent)) {
       updateTodos(e.target.textContent);
       const previousChosen = document.querySelector(".project_chosen");
-      if (previousChosen)
-        previousChosen.classList.remove("project_chosen");
+      if (previousChosen) previousChosen.classList.remove("project_chosen");
       e.target.classList.add("project_chosen");
     }
   });
@@ -33,15 +40,19 @@ function initialLoad(){
   highlightFirstProject();
 }
 
-function highlightFirstProject(){
-  document.querySelector(".project_list").firstElementChild.classList.add("project_chosen");
+function highlightFirstProject() {
+  document
+    .querySelector(".project_list")
+    .firstElementChild.classList.add("project_chosen");
 }
 
-function highlightLastProject(){
-  document.querySelector(".project_list").lastElementChild.classList.add("project_chosen");
+function highlightLastProject() {
+  document
+    .querySelector(".project_list")
+    .lastElementChild.classList.add("project_chosen");
 }
 
-function highlightProject(project){
+function highlightProject(project) {
   let element;
   for (const h2 of document.querySelectorAll("h2")) {
     if (h2.textContent.includes(project)) {
@@ -51,8 +62,7 @@ function highlightProject(project){
   }
 
   const previousChosen = document.querySelector(".project_chosen");
-  if (previousChosen)
-    previousChosen.classList.remove("project_chosen");
+  if (previousChosen) previousChosen.classList.remove("project_chosen");
   element.classList.add("project_chosen");
 }
 
@@ -67,7 +77,7 @@ projectPlus.addEventListener("click", displayProjectForm);
 
 const xClicked = () => {
   hideForm();
-}
+};
 
 const addTodoClicked = () => {
   const title = document.querySelector("#title").value;
@@ -75,30 +85,30 @@ const addTodoClicked = () => {
     const description = document.querySelector("#description").value;
     const dueDate = document.querySelector("#due_date").value;
     const project = document.querySelector("#project").value;
-  
+
     new Todo(title, description, dueDate, project);
-  
+
     updateTodos(project);
-  
+
     hideForm();
 
     highlightProject(project);
   }
-}
+};
 
 const deleteTodo = (e, todo) => {
   let target = e.target.parentElement.parentElement;
   Todo.deleteTodo(todo, document.querySelector(".project_chosen").textContent);
   document.querySelector(".list").removeChild(target);
-}
+};
 
 function updateTodos(project) {
   const list = Todo.getList(project);
-  
+
   clearTodoList();
 
   if (list) {
-    list.forEach(element => {
+    list.forEach((element) => {
       displayTodoList(element);
     });
   }
@@ -107,33 +117,31 @@ function updateTodos(project) {
 const addProjectClicked = () => {
   const project = document.querySelector("#project").value;
   if (validInput(project)) {
-  
     Todo.addProject(project);
-  
+
     updateProjects();
 
     updateTodos(project);
-  
+
     hideForm();
   }
-}
+};
 
 function updateProjects() {
   const list = Todo.getProjects();
-  
+
   clearProjectList();
 
-  list.forEach(element => {
+  list.forEach((element) => {
     displayProjectList(element);
   });
 
   const projectList = document.querySelector(".project_list");
   projectList.addEventListener("click", (e) => {
-    if (list.includes(e.target.textContent)){
+    if (list.includes(e.target.textContent)) {
       updateTodos(e.target.textContent);
       const previousChosen = document.querySelector(".project_chosen");
-      if (previousChosen)
-        previousChosen.classList.remove("project_chosen");
+      if (previousChosen) previousChosen.classList.remove("project_chosen");
       e.target.classList.add("project_chosen");
     }
   });
@@ -142,7 +150,6 @@ function updateProjects() {
 }
 
 function validInput(input) {
-  if (input == "")
-    return false;
+  if (input == "") return false;
   return true;
 }

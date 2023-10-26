@@ -35,7 +35,8 @@ h1 {
   color: rgb(116, 215, 116);
 }
 
-.plus:hover, .project_plus:hover {
+.plus:hover,
+.project_plus:hover {
   cursor: pointer;
   color: rgb(78, 144, 78);
 }
@@ -101,7 +102,9 @@ a {
   font-size: 50px;
 }
 
-.form input, .form button, .form select {
+.form input,
+.form button,
+.form select {
   background-color: rgb(78, 30, 30);
   font-size: 24px;
   margin: 5px 0 18px 0;
@@ -182,7 +185,7 @@ a {
   color: rgb(85, 255, 85);
 }
 
-.remove{
+.remove {
   background-color: black;
   color: rgb(198, 198, 198);
   padding: 5px;

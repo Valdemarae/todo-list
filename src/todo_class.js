@@ -1,16 +1,17 @@
-import { getProjects, getTodoList, updateProjects, updateTodoList } from "./memory";
+import {
+  getProjects,
+  getTodoList,
+  updateProjects,
+  updateTodoList,
+} from "./memory";
 
 let todoList, projects;
 
-if (getProjects())
-  projects = getProjects();
-else
-  projects = ["general"];
+if (getProjects()) projects = getProjects();
+else projects = ["general"];
 
-if (getTodoList())
-  todoList = getTodoList();
-else
-  todoList = {};
+if (getTodoList()) todoList = getTodoList();
+else todoList = {};
 
 export default class Todo {
   constructor(title, description, dueDate, project) {
@@ -23,10 +24,8 @@ export default class Todo {
   }
 
   #addTodoToList(project) {
-    if (todoList[project])
-      todoList[project].push(this)
-    else
-      todoList[project] = [this];
+    if (todoList[project]) todoList[project].push(this);
+    else todoList[project] = [this];
   }
 
   static getList(project) {
@@ -43,10 +42,8 @@ export default class Todo {
   }
 
   static toggleCompletion(todo) {
-    if (todo.completed == "✘")
-      todo.completed = "✔";
-    else
-      todo.completed = "✘";
+    if (todo.completed == "✘") todo.completed = "✔";
+    else todo.completed = "✘";
     updateTodoList(todoList);
   }
 
@@ -54,13 +51,12 @@ export default class Todo {
     let array = todoList[project];
     let index = 0;
     let n;
-    array.forEach(element => {
-      if (element == todo)
-        n = index;
+    array.forEach((element) => {
+      if (element == todo) n = index;
       index++;
     });
     if (n != undefined)
-      todoList[project] = array.slice(0, n).concat(array.slice(n+1));
+      todoList[project] = array.slice(0, n).concat(array.slice(n + 1));
     updateTodoList(todoList);
   }
 }

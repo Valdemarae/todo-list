@@ -1,5 +1,10 @@
-import { xClicked, addTodoClicked, addProjectClicked, deleteTodo } from './index';
-import Todo from './todo_class';
+import {
+  xClicked,
+  addTodoClicked,
+  addProjectClicked,
+  deleteTodo,
+} from "./index";
+import Todo from "./todo_class";
 
 const main = document.querySelector(".main");
 const content = document.querySelector(".content");
@@ -46,7 +51,7 @@ const displayForm = (projects) => {
   projectLabel.textContent = "Project";
   const projectInput = document.createElement("select");
   projectInput.id = "project";
-  projects.forEach(element => {
+  projects.forEach((element) => {
     const option = document.createElement("option");
     option.value = element;
     option.textContent = element;
@@ -97,10 +102,8 @@ const displayTodoList = (element) => {
   completion.textContent = "Completed? " + element.completed;
   completion.classList.add("completion");
 
-  if (element.completed == "✘")
-    completion.classList.add("not_completed");
-  else
-    completion.classList.add("completed");
+  if (element.completed == "✘") completion.classList.add("not_completed");
+  else completion.classList.add("completed");
 
   const remove = document.createElement("button");
   remove.textContent = "Delete Todo";
@@ -133,7 +136,7 @@ const displayTodoList = (element) => {
   remove.addEventListener("click", (e) => {
     deleteTodo(e, element);
   });
-}
+};
 
 const displayProjectList = (element) => {
   const list = document.querySelector(".project_list");
@@ -143,14 +146,14 @@ const displayProjectList = (element) => {
   h2.classList.add("project");
 
   list.appendChild(h2);
-}
+};
 
 const clearTodoList = () => {
   content.removeChild(document.querySelector(".list"));
   const list = document.createElement("div");
   list.classList.add("list");
   content.appendChild(list);
-}
+};
 
 const clearProjectList = () => {
   const projects = document.querySelector(".projects");
@@ -158,7 +161,7 @@ const clearProjectList = () => {
   const list = document.createElement("div");
   list.classList.add("project_list");
   projects.appendChild(list);
-}
+};
 
 const displayProjectForm = () => {
   const form = document.createElement("div");
@@ -181,7 +184,6 @@ const displayProjectForm = () => {
   submitButton.textContent = "Create Project";
   submitButton.classList.add("add_project");
 
-
   form.appendChild(x);
   form.appendChild(projectLabel);
   form.appendChild(projectInput);
@@ -190,6 +192,14 @@ const displayProjectForm = () => {
   main.appendChild(form);
   submitButton.addEventListener("click", addProjectClicked);
   x.addEventListener("click", xClicked);
-}
+};
 
-export { displayForm, hideForm, displayTodoList, clearTodoList, displayProjectForm, clearProjectList, displayProjectList };
+export {
+  displayForm,
+  hideForm,
+  displayTodoList,
+  clearTodoList,
+  displayProjectForm,
+  clearProjectList,
+  displayProjectList,
+};
