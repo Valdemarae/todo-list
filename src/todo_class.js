@@ -35,4 +35,17 @@ export default class Todo {
     else
       todo.completed = "✘";
   }
+
+  static deleteTodo(todo, project) {
+    let array = todoList[project];
+    let index = 0;
+    let n;
+    array.forEach(element => {
+      if (element == todo)
+        n = index;
+      index++;
+    });
+    if (n != undefined)
+      todoList[project] = array.slice(0, n).concat(array.slice(n+1));
+  }
 }

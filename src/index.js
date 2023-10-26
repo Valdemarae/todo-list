@@ -2,7 +2,7 @@ import Todo from "./todo_class";
 import './style.css';
 import { displayForm, hideForm, displayTodoList, clearTodoList, displayProjectForm, clearProjectList, displayProjectList } from "./html";
 
-export { xClicked, addTodoClicked, addProjectClicked };
+export { xClicked, addTodoClicked, addProjectClicked, deleteTodo };
 
 displayData();
 function displayData(){
@@ -41,7 +41,6 @@ function highlightProject(project){
   }
 
   const previousChosen = document.querySelector(".project_chosen");
-  console.log(project)
       if (previousChosen)
         previousChosen.classList.remove("project_chosen");
       element.classList.add("project_chosen");
@@ -75,6 +74,12 @@ const addTodoClicked = () => {
 
     highlightProject(project);
   }
+}
+
+const deleteTodo = (e, todo) => {
+  let target = e.target.parentElement.parentElement;
+  Todo.deleteTodo(todo, document.querySelector(".project_chosen").textContent);
+  document.querySelector(".list").removeChild(target);
 }
 
 function updateTodos(project) {

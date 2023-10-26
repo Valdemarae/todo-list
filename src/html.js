@@ -1,4 +1,4 @@
-import { xClicked, addTodoClicked, addProjectClicked } from './index';
+import { xClicked, addTodoClicked, addProjectClicked, deleteTodo } from './index';
 import Todo from './todo_class';
 
 const main = document.querySelector(".main");
@@ -102,10 +102,15 @@ const displayTodoList = (element) => {
   else
     completion.classList.add("completed");
 
+  const remove = document.createElement("button");
+  remove.textContent = "Delete Todo";
+  remove.classList.add("remove");
+
   divLeft.appendChild(title);
   divLeft.appendChild(description);
   divLeft.appendChild(dueDate);
   divRight.appendChild(completion);
+  divRight.appendChild(remove);
 
   div.appendChild(divLeft);
   div.appendChild(divRight);
@@ -123,6 +128,10 @@ const displayTodoList = (element) => {
       e.target.classList.remove("completed");
       e.target.textContent = "Completed? ✘";
     }
+  });
+
+  remove.addEventListener("click", (e) => {
+    deleteTodo(e, element);
   });
 }
 
