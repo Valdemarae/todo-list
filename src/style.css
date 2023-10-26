@@ -3,7 +3,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: space-between;
 }
 
@@ -42,7 +42,7 @@ h1 {
 
 .main {
   display: flex;
-  height: 100%;
+  flex: 1;
 }
 
 .content {
@@ -51,7 +51,7 @@ h1 {
 
 .sidebar {
   background-color: rgb(110, 43, 43);
-  width: 30vw;
+  width: 23vw;
 }
 
 .footer {
@@ -118,4 +118,22 @@ a {
   .plus {
     font-size: 100px;
   }
+}
+
+.list {
+  display: flex;
+  margin: 90px 50px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.todo {
+  background-color: rgb(110, 43, 43);
+  padding: 10px 20px;
+  max-width: 700px;
+  min-width: 500px;
+  flex: 1;
+  border: 2px solid black;
+  border-radius: 10px;
+  min-height: 96px;
 }
