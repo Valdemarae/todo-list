@@ -146,3 +146,17 @@ a {
   color: rgb(143, 244, 143);
   font-size: 50px;
 }
+
+.project_list h2 {
+  margin: 20px;
+}
+
+.project_list h2:hover {
+  color: rgb(197, 197, 197);
+  cursor: pointer;
+}
+
+.project_list .project_chosen {
+  color: rgb(197, 197, 197);
+  margin-left: 40px;
+}

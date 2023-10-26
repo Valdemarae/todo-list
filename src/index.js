@@ -19,6 +19,16 @@ function displayData(){
       displayProjectList(element);
     });
   }
+
+  highlightFirstProject();
+}
+
+function highlightFirstProject(){
+  document.querySelector(".project_list").firstElementChild.classList.add("project_chosen");
+}
+
+function highlightLastProject(){
+  document.querySelector(".project_list").lastElementChild.classList.add("project_chosen");
 }
 
 const plus = document.querySelector(".plus");
@@ -43,15 +53,21 @@ const addTodoClicked = () => {
   
     new Todo(title, description, dueDate, project);
   
-    const list = Todo.getList(project);
+    updateTodos(project);
   
-    clearTodoList();
+    hideForm();
+  }
+}
+
+function updateTodos(project) {
+  const list = Todo.getList(project);
   
+  clearTodoList();
+
+  if (list) {
     list.forEach(element => {
       displayTodoList(element);
     });
-  
-    hideForm();
   }
 }
 
@@ -61,16 +77,34 @@ const addProjectClicked = () => {
   
     Todo.addProject(project);
   
-    const list = Todo.getProjects();
-  
-    clearProjectList();
-  
-    list.forEach(element => {
-      displayProjectList(element);
-    });
+    updateProjects();
   
     hideForm();
   }
+}
+
+function updateProjects() {
+  const list = Todo.getProjects();
+  
+  clearProjectList();
+
+  list.forEach(element => {
+    displayProjectList(element);
+  });
+
+  const projectList = document.querySelector(".project_list");
+  projectList.addEventListener("click", (e) => {
+    if (list.includes(e.target.textContent)){
+      updateTodos(e.target.textContent);
+      const previousChosen = document.querySelector(".project_chosen");
+      console.log(previousChosen)
+      if (previousChosen)
+        previousChosen.classList.remove("project_chosen");
+      e.target.classList.add("project_chosen");
+    }
+  });
+
+  highlightLastProject();
 }
 
 function validInput(input) {

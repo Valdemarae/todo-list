@@ -101,6 +101,7 @@ const displayProjectList = (element) => {
 
   const h2 = document.createElement("h2");
   h2.textContent = element;
+  h2.classList.add("project");
 
   list.appendChild(h2);
 }
