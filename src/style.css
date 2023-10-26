@@ -138,6 +138,11 @@ a {
   border-radius: 10px;
   min-height: 96px;
   display: flex;
+  justify-content: space-between;
+}
+
+.todo div {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -159,4 +164,20 @@ a {
 .project_list .project_chosen {
   color: rgb(197, 197, 197);
   margin-left: 40px;
+}
+
+.completion {
+  font-size: 22px;
+}
+
+.completion:hover {
+  cursor: pointer;
+}
+
+.not_completed {
+  color: rgb(255, 85, 85);
+}
+
+.completed {
+  color: rgb(85, 255, 85);
 }

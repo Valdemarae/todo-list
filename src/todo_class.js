@@ -6,6 +6,7 @@ export default class Todo {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
+    this.completed = "✘";
     this.#addTodoToList(project);
   }
 
@@ -26,5 +27,12 @@ export default class Todo {
 
   static addProject(project) {
     projects.push(project);
+  }
+
+  static toggleCompletion(todo) {
+    if (todo.completed == "✘")
+      todo.completed = "✔";
+    else
+      todo.completed = "✘";
   }
 }

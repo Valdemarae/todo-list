@@ -1,4 +1,5 @@
 import { xClicked, addTodoClicked, addProjectClicked } from './index';
+import Todo from './todo_class';
 
 const main = document.querySelector(".main");
 const content = document.querySelector(".content");
@@ -80,6 +81,9 @@ const displayTodoList = (element) => {
   const div = document.createElement("div");
   div.classList.add("todo");
 
+  const divLeft = document.createElement("div");
+  const divRight = document.createElement("div");
+
   const title = document.createElement("h2");
   title.textContent = element.title;
 
@@ -89,11 +93,38 @@ const displayTodoList = (element) => {
   const dueDate = document.createElement("p");
   dueDate.textContent = "Due: " + element.dueDate;
 
-  div.appendChild(title);
-  div.appendChild(description);
-  div.appendChild(dueDate);
+  const completion = document.createElement("p");
+  completion.textContent = "Completed? " + element.completed;
+  completion.classList.add("completion");
+
+  if (element.completed == "✘")
+    completion.classList.add("not_completed");
+  else
+    completion.classList.add("completed");
+
+  divLeft.appendChild(title);
+  divLeft.appendChild(description);
+  divLeft.appendChild(dueDate);
+  divRight.appendChild(completion);
+
+  div.appendChild(divLeft);
+  div.appendChild(divRight);
 
   list.appendChild(div);
+
+  completion.addEventListener("click", (e) => {
+    Todo.toggleCompletion(element);
+    console.log(e.target.textContent)
+    if (e.target.textContent == "Completed? ✘") {
+      e.target.classList.add("completed");
+      e.target.classList.remove("not_completed");
+      e.target.textContent = "Completed? ✔";
+    } else {
+      e.target.classList.add("not_completed");
+      e.target.classList.remove("completed");
+      e.target.textContent = "Completed? ✘";
+    }
+  });
 }
 
 const displayProjectList = (element) => {
