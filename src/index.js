@@ -15,14 +15,15 @@ const xClicked = () => {
 }
 
 const addTodoClicked = () => {
-  const title = document.querySelector("#title");
-  if (validInput(title.value)) {
-    const description = document.querySelector("#description");
-    const dueDate = document.querySelector("#due_date");
+  const title = document.querySelector("#title").value;
+  if (validInput(title)) {
+    const description = document.querySelector("#description").value;
+    const dueDate = document.querySelector("#due_date").value;
+    const project = document.querySelector("#project").value;
   
-    new Todo(title.value, description.value, dueDate.value);
+    new Todo(title, description, dueDate, project);
   
-    const list = Todo.getList();
+    const list = Todo.getList(project);
   
     clearTodoList();
   

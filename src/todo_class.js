@@ -2,7 +2,7 @@ let todoList = {};
 let projects = ["general"];
 
 export default class Todo {
-  constructor(title, description, dueDate, project = "general") {
+  constructor(title, description, dueDate, project) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
@@ -16,7 +16,7 @@ export default class Todo {
       todoList[project] = [this];
   }
 
-  static getList(project = "general") {
+  static getList(project) {
     return todoList[project];
   }
 
