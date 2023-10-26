@@ -73,7 +73,7 @@ const displayTodoList = (element) => {
   description.textContent = element.description;
 
   const dueDate = document.createElement("p");
-  dueDate.textContent = element.dueDate;
+  dueDate.textContent = "Due: " + element.dueDate;
 
   div.appendChild(title);
   div.appendChild(description);
