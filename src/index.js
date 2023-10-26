@@ -6,7 +6,8 @@ export { xClicked, addTodoClicked };
 
 const plus = document.querySelector(".plus");
 plus.addEventListener("click", () => {
-  displayForm();
+  const projects = Todo.getProjects();
+  displayForm(projects);
 });
 
 const xClicked = () => {

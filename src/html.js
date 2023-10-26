@@ -3,7 +3,7 @@ import { xClicked, addTodoClicked } from './index';
 const main = document.querySelector(".main");
 const content = document.querySelector(".content");
 
-const displayForm = () => {
+const displayForm = (projects) => {
   const form = document.createElement("div");
   form.classList.add("form");
   main.setAttribute("style", "pointer-events: none;");
@@ -40,6 +40,18 @@ const displayForm = () => {
   submitButton.textContent = "Create Todo";
   submitButton.classList.add("add_todo");
 
+  const projectLabel = document.createElement("label");
+  projectLabel.for = "project";
+  projectLabel.textContent = "Project";
+  const projectInput = document.createElement("select");
+  projectInput.id = "project";
+  projects.forEach(element => {
+    const option = document.createElement("option");
+    option.value = element;
+    option.textContent = element;
+    projectInput.appendChild(option);
+  });
+
   form.appendChild(x);
   form.appendChild(titleLabel);
   form.appendChild(titleInput);
@@ -47,6 +59,8 @@ const displayForm = () => {
   form.appendChild(descriptionInput);
   form.appendChild(dueDateLabel);
   form.appendChild(dueDateInput);
+  form.appendChild(projectLabel);
+  form.appendChild(projectInput);
   form.appendChild(submitButton);
 
   main.appendChild(form);
