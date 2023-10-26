@@ -23,4 +23,8 @@ export default class Todo {
   static getProjects() {
     return projects;
   }
+
+  static addProject(project) {
+    projects.push(project);
+  }
 }

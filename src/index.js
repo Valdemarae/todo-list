@@ -1,14 +1,34 @@
 import Todo from "./todo_class";
 import './style.css';
-import { displayForm, hideForm, displayTodoList, clearTodoList } from "./html";
+import { displayForm, hideForm, displayTodoList, clearTodoList, displayProjectForm, clearProjectList, displayProjectList } from "./html";
 
-export { xClicked, addTodoClicked };
+export { xClicked, addTodoClicked, addProjectClicked };
+
+displayData();
+function displayData(){
+  const list = Todo.getList("general");
+  if (list){
+    list.forEach(element => {
+      displayTodoList(element);
+    });
+  }
+
+  const projectList = Todo.getProjects();
+  if (projectList){
+    projectList.forEach(element => {
+      displayProjectList(element);
+    });
+  }
+}
 
 const plus = document.querySelector(".plus");
 plus.addEventListener("click", () => {
   const projects = Todo.getProjects();
   displayForm(projects);
 });
+
+const projectPlus = document.querySelector(".project_plus");
+projectPlus.addEventListener("click", displayProjectForm);
 
 const xClicked = () => {
   hideForm();
@@ -35,8 +55,26 @@ const addTodoClicked = () => {
   }
 }
 
-function validInput(title) {
-  if (title == "")
+const addProjectClicked = () => {
+  const project = document.querySelector("#project").value;
+  if (validInput(project)) {
+  
+    Todo.addProject(project);
+  
+    const list = Todo.getProjects();
+  
+    clearProjectList();
+  
+    list.forEach(element => {
+      displayProjectList(element);
+    });
+  
+    hideForm();
+  }
+}
+
+function validInput(input) {
+  if (input == "")
     return false;
   return true;
 }

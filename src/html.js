@@ -1,4 +1,4 @@
-import { xClicked, addTodoClicked } from './index';
+import { xClicked, addTodoClicked, addProjectClicked } from './index';
 
 const main = document.querySelector(".main");
 const content = document.querySelector(".content");
@@ -96,6 +96,15 @@ const displayTodoList = (element) => {
   list.appendChild(div);
 }
 
+const displayProjectList = (element) => {
+  const list = document.querySelector(".project_list");
+
+  const h2 = document.createElement("h2");
+  h2.textContent = element;
+
+  list.appendChild(h2);
+}
+
 const clearTodoList = () => {
   content.removeChild(document.querySelector(".list"));
   const list = document.createElement("div");
@@ -103,4 +112,44 @@ const clearTodoList = () => {
   content.appendChild(list);
 }
 
-export { displayForm, hideForm, displayTodoList, clearTodoList };
+const clearProjectList = () => {
+  const projects = document.querySelector(".projects");
+  projects.removeChild(document.querySelector(".project_list"));
+  const list = document.createElement("div");
+  list.classList.add("project_list");
+  projects.appendChild(list);
+}
+
+const displayProjectForm = () => {
+  const form = document.createElement("div");
+  form.classList.add("form");
+  main.setAttribute("style", "pointer-events: none;");
+
+  const x = document.createElement("button");
+  x.textContent = "x";
+  x.classList.add("x");
+
+  const projectLabel = document.createElement("label");
+  projectLabel.for = "project";
+  projectLabel.textContent = "Project";
+  const projectInput = document.createElement("input");
+  projectInput.type = "text";
+  projectInput.id = "project";
+  projectInput.placeholder = "must be present";
+
+  const submitButton = document.createElement("button");
+  submitButton.textContent = "Create Project";
+  submitButton.classList.add("add_project");
+
+
+  form.appendChild(x);
+  form.appendChild(projectLabel);
+  form.appendChild(projectInput);
+  form.appendChild(submitButton);
+
+  main.appendChild(form);
+  submitButton.addEventListener("click", addProjectClicked);
+  x.addEventListener("click", xClicked);
+}
+
+export { displayForm, hideForm, displayTodoList, clearTodoList, displayProjectForm, clearProjectList, displayProjectList };

@@ -35,7 +35,7 @@ h1 {
   color: rgb(116, 215, 116);
 }
 
-.plus:hover {
+.plus:hover, .project_plus:hover {
   cursor: pointer;
   color: rgb(78, 144, 78);
 }
@@ -140,4 +140,9 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.project_plus {
+  color: rgb(143, 244, 143);
+  font-size: 50px;
 }
