@@ -4,8 +4,8 @@ import { displayForm, hideForm, displayTodoList, clearTodoList, displayProjectFo
 
 export { xClicked, addTodoClicked, addProjectClicked, deleteTodo };
 
-displayData();
-function displayData(){
+initialLoad();
+function initialLoad(){
   const list = Todo.getList("general");
   if (list){
     list.forEach(element => {
@@ -19,6 +19,16 @@ function displayData(){
       displayProjectList(element);
     });
   }
+
+  document.querySelector(".project_list").addEventListener("click", (e) => {
+    if (projectList.includes(e.target.textContent)){
+      updateTodos(e.target.textContent);
+      const previousChosen = document.querySelector(".project_chosen");
+      if (previousChosen)
+        previousChosen.classList.remove("project_chosen");
+      e.target.classList.add("project_chosen");
+    }
+  });
 
   highlightFirstProject();
 }
@@ -41,9 +51,9 @@ function highlightProject(project){
   }
 
   const previousChosen = document.querySelector(".project_chosen");
-      if (previousChosen)
-        previousChosen.classList.remove("project_chosen");
-      element.classList.add("project_chosen");
+  if (previousChosen)
+    previousChosen.classList.remove("project_chosen");
+  element.classList.add("project_chosen");
 }
 
 const plus = document.querySelector(".plus");
